@@ -1,0 +1,50 @@
+{
+  "fairness_definition": "Tune (K_R,K_w) on nominal 30\u00b0 case to equalize RMS SO(3) attitude error angle e_ang between Euler and Quaternion propagation.",
+  "objective": "J = |rms_E-rms_Q| + 0.05*(rms_E+rms_Q) + 0.01*(rms_tau_E+rms_tau_Q)",
+  "tuned_gains": {
+    "K_R": 80.0,
+    "K_w": 2.0
+  },
+  "grid_used": {
+    "K_R_grid": [
+      5.0,
+      10.0,
+      20.0,
+      40.0,
+      80.0
+    ],
+    "K_w_grid": [
+      1.0,
+      2.0,
+      4.0,
+      8.0
+    ]
+  },
+  "euler_convention": "ZYX: R = Rz(psi) Ry(theta) Rx(phi) (Euler only for propagation)",
+  "quaternion_convention": "q=[qw,qx,qy,qz], normalized each step (Quaternion only for propagation)",
+  "attitude_error_angle": "e_ang = acos((tr(R_d^T R)-1)/2)",
+  "controller": "tau = -K_R e_R - K_w e_w + omega x (I omega), e_R=0.5 vee(R_d^T R - R^T R_d), omega_d=0",
+  "I": [
+    [
+      0.02,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.02,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.04
+    ]
+  ],
+  "tau_max": [
+    1.5,
+    1.5,
+    1.0
+  ],
+  "integration": "explicit Euler, dt fixed"
+}
