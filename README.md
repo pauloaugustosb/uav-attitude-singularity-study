@@ -32,8 +32,10 @@ The results show that Euler-angle parametrizations can introduce dynamic amplifi
 uav-attitude-singularity-study
 ├── README.md
 ├── requirements.txt
-├── articleConference.py
-│── review.py 
+├── scripts
+│   ├── articleConference.py
+│   └── review.py
+│
 ├── figures
 ├── out
 ├── paper
